@@ -32,6 +32,3 @@ The project demonstrates how DHCP (Dynamic Host Configuration Protocol) works us
 ## 🛠️ Tools Used
 - Cisco Packet Tracer
 
----
-
-## 📂 Project Structure
