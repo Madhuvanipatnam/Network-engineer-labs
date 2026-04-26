@@ -1,7 +1,6 @@
 Tool : CISCO PACKET TRACER
 
 *********Topology 1 (Direct DHCP server config) (same Network)*************
-[Topology 1](DHCP/Topologies.png)
 This topology demonstrates DHCP configuration using a dedicated server in a single LAN.
 All devices are connected via a switch and belong to the same subnet.
 
