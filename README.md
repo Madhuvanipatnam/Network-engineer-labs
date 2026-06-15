@@ -1,4 +1,4 @@
-# 📡 DHCP Configuration Lab (Packet Tracer)
+📡 DHCP Configuration Lab (Packet Tracer)
 
 ## 📌 Overview
 The project demonstrates how DHCP (Dynamic Host Configuration Protocol) works using three different network topologies in Cisco Packet Tracer.
