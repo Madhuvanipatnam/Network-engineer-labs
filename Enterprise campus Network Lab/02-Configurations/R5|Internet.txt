@@ -1,0 +1,68 @@
+!
+!=========================================================
+! Device : INTERNET (R5)
+! Role   : Simulated Internet Router
+! AS     : 65010
+!=========================================================
+!
+
+enable
+configure terminal
+
+hostname INTERNET
+
+no ip domain-lookup
+
+!
+!=========================================================
+! Loopback Interface
+!=========================================================
+!
+
+interface Loopback0
+ description PUBLIC_INTERNET
+ ip address 8.8.8.8 255.255.255.255
+
+!
+!=========================================================
+! Interfaces
+!=========================================================
+!
+
+interface GigabitEthernet0/0
+ description TO_ISP1_R3
+ ip address 192.0.2.2 255.255.255.0
+ no shutdown
+
+interface GigabitEthernet1/0
+ description TO_ISP2_R4
+ ip address 192.0.3.2 255.255.255.0
+ no shutdown
+
+!
+!=========================================================
+! BGP Configuration
+!=========================================================
+!
+
+router bgp 65010
+ bgp log-neighbor-changes
+
+ !
+ ! ISP1
+ !
+ neighbor 192.0.2.1 remote-as 300
+
+ !
+ ! ISP2
+ !
+ neighbor 192.0.3.1 remote-as 400
+
+ !
+ ! Networks to Advertise
+ !
+ network 8.8.8.8 mask 255.255.255.255
+
+end
+
+write memory
