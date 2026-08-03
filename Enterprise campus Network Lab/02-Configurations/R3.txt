@@ -1,0 +1,69 @@
+!
+!=========================================================
+! Device : R3
+! Role   : ISP1 Router
+! AS     : 300
+!=========================================================
+!
+
+enable
+configure terminal
+
+hostname R3
+
+no ip domain-lookup
+
+!
+!=========================================================
+! Loopback Interface
+!=========================================================
+!
+
+interface Loopback0
+ description ISP1_ROUTER_ID
+ ip address 3.3.3.3 255.255.255.255
+
+!
+!=========================================================
+! Interfaces
+!=========================================================
+!
+
+interface GigabitEthernet0/0
+ description TO_R1
+ ip address 203.0.113.2 255.255.255.0
+ no shutdown
+
+interface GigabitEthernet1/0
+ description TO_INTERNET
+ ip address 192.0.2.1 255.255.255.0
+ no shutdown
+
+!
+!=========================================================
+! BGP Configuration
+!=========================================================
+!
+
+router bgp 300
+ bgp log-neighbor-changes
+
+ !
+ ! Enterprise
+ !
+ neighbor 203.0.113.1 remote-as 100
+
+ !
+ ! Internet
+ !
+ neighbor 192.0.2.2 remote-as 65010
+
+ !
+ ! Networks to Advertise
+ !
+ network 3.3.3.3 mask 255.255.255.255
+ network 203.0.113.0 mask 255.255.255.0
+
+end
+
+write memory
