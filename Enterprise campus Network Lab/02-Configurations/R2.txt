@@ -1,0 +1,81 @@
+!
+!=========================================================
+! Device : R2
+! Role   : Enterprise Core / Edge Router
+!=========================================================
+!
+
+enable
+configure terminal
+
+hostname R2
+
+no ip domain-lookup
+
+!
+!=========================================================
+! Loopback Interface
+!=========================================================
+!
+
+interface Loopback0
+ description ROUTER_ID
+ ip address 2.2.2.2 255.255.255.255
+
+!
+!=========================================================
+! Interfaces
+!=========================================================
+!
+
+interface GigabitEthernet0/0
+ description TO_R1
+ ip address 192.168.12.2 255.255.255.0
+ no shutdown
+
+interface GigabitEthernet1/0
+ description TO_ISP2
+ ip address 198.51.100.1 255.255.255.0
+ no shutdown
+
+interface Ethernet5/0
+ description TO_DSW2
+ ip address 192.168.24.1 255.255.255.0
+ no shutdown
+
+interface Ethernet5/1
+ description TO_DSW1
+ ip address 192.168.23.1 255.255.255.0
+ no shutdown
+
+!
+!=========================================================
+! OSPF Configuration
+!=========================================================
+!
+
+router ospf 1
+ router-id 2.2.2.2
+
+ network 2.2.2.2 0.0.0.0 area 0
+ network 192.168.12.0 0.0.0.255 area 0
+ network 192.168.23.0 0.0.0.255 area 0
+ network 192.168.24.0 0.0.0.255 area 0
+
+!
+!=========================================================
+! BGP Configuration
+!=========================================================
+!
+
+router bgp 100
+ bgp log-neighbor-changes
+
+ neighbor 198.51.100.2 remote-as 400
+
+ network 2.2.2.2 mask 255.255.255.255
+ network 198.51.100.0 mask 255.255.255.0
+
+end
+
+write memory
