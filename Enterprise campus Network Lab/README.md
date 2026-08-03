@@ -4,9 +4,9 @@
 
 This project demonstrates the design and implementation of a highly available three-tier enterprise campus network using Cisco devices in GNS3.
 
-The network consists of an Access Layer, Distribution Layer, Core Layer, and dual ISP edge connectivity. It incorporates dynamic routing, gateway redundancy, DHCP, NAT/PAT, Layer 2 redundancy, and Internet access, simulating a real-world enterprise environment.
+The network consists of an Access Layer, Distribution Layer, Core Layer, and dual ISP edge connectivity. It incorporates dynamic routing, gateway redundancy, DHCP, NAT/PAT, Layer 2 redundancy and Internet access, simulating a real-world enterprise environment.
 
-The project focuses on enterprise networking concepts including VLAN segmentation, Inter-VLAN routing, OSPF, HSRP, EtherChannel, eBGP, and NAT Overload.
+The project focuses on enterprise networking concepts including VLAN segmentation, Inter-VLAN routing, OSPF, HSRP, EtherChannel, eBGP and NAT Overload.
 
 ---
 
