@@ -1,0 +1,94 @@
+!
+!=========================================================
+! Device : SW1
+! Role   : Access Layer Switch
+!=========================================================
+!
+
+enable
+configure terminal
+
+hostname SW1
+
+no ip domain-lookup
+
+!
+!=========================================================
+! VLAN Configuration
+!=========================================================
+!
+
+vlan 10
+ name FINANCE
+
+vlan 20
+ name HR
+
+vlan 30
+ name SALES
+
+vlan 40
+ name IT
+
+!
+!=========================================================
+! Access Ports
+!=========================================================
+!
+
+interface Ethernet0/0
+ description PC1
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ no shutdown
+
+interface Ethernet0/1
+ description PC2
+ switchport mode access
+ switchport access vlan 20
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ no shutdown
+
+interface Ethernet0/2
+ description PC3
+ switchport mode access
+ switchport access vlan 30
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ no shutdown
+
+interface Ethernet0/3
+ description PC4
+ switchport mode access
+ switchport access vlan 40
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ no shutdown
+
+!
+!=========================================================
+! Uplink to DSW1
+!=========================================================
+!
+
+interface Ethernet1/0
+ description TO_DSW1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,40
+ no shutdown
+
+!
+!=========================================================
+! Spanning Tree
+!=========================================================
+!
+
+spanning-tree mode rapid-pvst
+
+end
+
+write memory
